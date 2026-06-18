@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenido - TecnoSoluciones</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1a1f35 25%, #1e1b4b 50%, #162e4a 75%, #0f172a 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Efectos de fondo animados premium */
+        .background-orbs {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+        }
+
+        .orb1 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, #3b82f6 0%, transparent 70%);
+            top: -100px;
+            right: -100px;
+            animation: float1 20s ease-in-out infinite;
+        }
+
+        .orb2 {
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle, #06b6d4 0%, transparent 70%);
+            bottom: -100px;
+            left: -100px;
+            animation: float2 25s ease-in-out infinite;
+        }
+
+        .orb3 {
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, #8b5cf6 0%, transparent 70%);
+            top: 50%;
+            right: 10%;
+            animation: float3 30s ease-in-out infinite;
+        }
+
+        @keyframes float1 {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(50px, 50px); }
+        }
+
+        @keyframes float2 {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(-50px, -50px); }
+        }
+
+        @keyframes float3 {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(30px, -30px); }
+        }
+
+        /* Container principal */
+        .container {
+            max-width: 700px;
+            width: 100%;
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 40px;
+            padding: 70px 50px;
+            box-shadow: 
+                0 25px 50px -12px rgba(0, 0, 0, 0.5),
+                inset 0 1px 1px rgba(255, 255, 255, 0.1),
+                0 0 100px rgba(59, 130, 246, 0.1);
+            animation: slideUp 0.8s ease-out;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            z-index: 10;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .logo {
+            font-size: 70px;
+            margin-bottom: 25px;
+            display: inline-block;
+            animation: float 3s ease-in-out infinite;
+            filter: drop-shadow(0 10px 30px rgba(59, 130, 246, 0.3));
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        h1 {
+            font-size: 56px;
+            font-weight: 700;
+            letter-spacing: -2px;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #bae6fd 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 12px;
+        }
+
+        .subtitle {
+            font-size: 16px;
+            color: #94a3b8;
+            font-weight: 400;
+            letter-spacing: 0.3px;
+            margin-bottom: 10px;
+        }
+
+        .brand {
+            font-size: 12px;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+
+        /* Sección WiFi Premium */
+        .wifi-section {
+            margin: 60px 0;
+            padding: 45px;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.08) 0%, rgba(6, 182, 212, 0.08) 100%);
+            border-radius: 25px;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .wifi-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(
+                circle at 30% 60%,
+                rgba(59, 130, 246, 0.1) 0%,
+                transparent 50%
+            );
+            pointer-events: none;
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .wifi-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 35px;
+        }
+
+        .wifi-icon {
+            font-size: 28px;
+            filter: drop-shadow(0 5px 15px rgba(59, 130, 246, 0.3));
+        }
+
+        .wifi-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: #e0f2fe;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .wifi-content {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+        }
+
+        .wifi-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .wifi-item-label {
+            font-size: 11px;
+            color: #7dd3fc;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 10px;
+            opacity: 0.8;
+        }
+
+        .wifi-item-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .wifi-item-value {
+            flex: 1;
+            font-size: 18px;
+            font-weight: 700;
+            color: #f0f9ff;
+            font-family: 'Monaco', 'Courier New', monospace;
+            letter-spacing: 1px;
+            word-break: break-all;
+            padding: 16px 20px;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(6, 182, 212, 0.08) 100%);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 14px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .wifi-item-value::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .wifi-item-value:hover::before {
+            left: 100%;
+        }
+
+        .wifi-item-value:hover {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(6, 182, 212, 0.12) 100%);
+            border-color: rgba(59, 130, 246, 0.5);
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .copy-btn {
+            padding: 12px 20px;
+            background: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
+            border: none;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
+            white-space: nowrap;
+        }
+
+        .copy-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(59, 130, 246, 0.4);
+        }
+
+        .copy-btn:active {
+            transform: translateY(-1px);
+        }
+
+        /* Instrucciones */
+        .instructions {
+            margin-top: 50px;
+            padding: 30px;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.08) 0%, rgba(168, 85, 247, 0.06) 100%);
+            border-radius: 20px;
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            position: relative;
+        }
+
+        .instructions-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: #d8b4fe;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .instructions-text {
+            font-size: 14px;
+            color: #cbd5e1;
+            line-height: 1.7;
+            font-weight: 400;
+        }
+
+        .instructions-text strong {
+            color: #f0f9ff;
+            font-weight: 600;
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 50px;
+            text-align: center;
+            font-size: 13px;
+            color: #64748b;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+        }
+
+        .footer span {
+            display: inline-block;
+            animation: wave 2s ease-in-out infinite;
+        }
+
+        @keyframes wave {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(20deg); }
+            75% { transform: rotate(-20deg); }
+        }
+
+        /* Toast de confirmación */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
+            color: #fff;
+            padding: 16px 28px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.4);
+            font-weight: 600;
+            font-size: 13px;
+            opacity: 0;
+            transform: translateY(20px) translateX(500px);
+            pointer-events: none;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateY(0) translateX(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 640px) {
+            .container {
+                padding: 50px 30px;
+                border-radius: 30px;
+            }
+
+            h1 {
+                font-size: 42px;
+            }
+
+            .logo {
+                font-size: 60px;
+            }
+
+            .wifi-section {
+                padding: 35px;
+            }
+
+            .wifi-item-value {
+                font-size: 16px;
+                padding: 14px 18px;
+            }
+
+            .copy-btn {
+                padding: 10px 16px;
+                font-size: 10px;
+            }
+
+            .toast {
+                bottom: 20px;
+                right: 20px;
+                left: 20px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation: none !important;
+                transition: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-orbs">
+        <div class="orb orb1"></div>
+        <div class="orb orb2"></div>
+        <div class="orb orb3"></div>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <div class="logo">🏠</div>
+            <h1>Bienvenido</h1>
+            <p class="subtitle">Conéctate a nuestra red</p>
+            <p class="brand">TecnoSoluciones BCN</p>
+        </div>
+
+        <div class="wifi-section">
+            <div class="wifi-header">
+                <span class="wifi-icon">📶</span>
+                <span class="wifi-title">Conexión WiFi</span>
+            </div>
+            <div class="wifi-content">
+                <div class="wifi-item">
+                    <span class="wifi-item-label">Nombre de la red (SSID)</span>
+                    <div class="wifi-item-container">
+                        <div class="wifi-item-value" id="ssidValue" onclick="copyToClipboard('ssidValue', 'Red copiada')">TecnoSoluciones</div>
+                        <button class="copy-btn" onclick="copyToClipboard('ssidValue', 'Red copiada')">Copiar</button>
+                    </div>
+                </div>
+                <div class="wifi-item">
+                    <span class="wifi-item-label">Contraseña</span>
+                    <div class="wifi-item-container">
+                        <div class="wifi-item-value" id="passwordValue" onclick="copyToClipboard('passwordValue', 'Contraseña copiada')">QT6Q45PU7LGEK8+</div>
+                        <button class="copy-btn" onclick="copyToClipboard('passwordValue', 'Contraseña copiada')">Copiar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="instructions">
+            <p class="instructions-title">✨ Cómo conectarse</p>
+            <p class="instructions-text">
+                Ve a la configuración de WiFi en tu dispositivo, selecciona <strong>TecnoSoluciones</strong>, ingresa la contraseña y disfruta de la conexión. Haz clic en cualquier valor o en el botón para copiar rápidamente.
+            </p>
+        </div>
+
+        <div class="footer">
+            <p>Gracias por visitarnos <span>🎉</span></p>
+        </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script>
+        function copyToClipboard(elementId, message) {
+            var element = document.getElementById(elementId);
+            var text = element.textContent;
+            
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(text).then(function() {
+                    showToast(message);
+                }).catch(function() {
+                    fallbackCopy(text, message);
+                });
+            } else {
+                fallbackCopy(text, message);
+            }
+        }
+
+        function fallbackCopy(text, message) {
+            var textarea = document.createElement('textarea');
+            textarea.value = text;
+            textarea.style.position = 'fixed';
+            textarea.style.opacity = '0';
+            document.body.appendChild(textarea);
+            textarea.select();
+            try {
+                document.execCommand('copy');
+                showToast(message);
+            } catch (err) {
+                console.error('Error al copiar:', err);
+            }
+            document.body.removeChild(textarea);
+        }
+
+        function showToast(message) {
+            var toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.add('show');
+            
+            setTimeout(function() {
+                toast.classList.remove('show');
+            }, 2500);
+        }
+
+        console.log('%c✨ TecnoSoluciones BCN ✨', 'font-size: 20px; color: #3b82f6; font-weight: bold;');
+        console.log('%cBienvenido a la red premium', 'font-size: 14px; color: #06b6d4;');
+    </script>
+</body>
+</html>
