@@ -102,6 +102,8 @@
             border: 1px solid rgba(255, 255, 255, 0.05);
             position: relative;
             z-index: 10;
+            max-height: 90vh;
+            overflow-y: auto;
         }
 
         @keyframes slideUp {
@@ -362,6 +364,122 @@
             75% { transform: rotate(-20deg); }
         }
 
+        /* Links Section */
+        .links-section {
+            margin-top: 60px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .links-title {
+            font-size: 12px;
+            font-weight: 700;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .links-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .link-card {
+            padding: 20px;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.06) 0%, rgba(6, 182, 212, 0.04) 100%);
+            border: 1px solid rgba(59, 130, 246, 0.15);
+            border-radius: 16px;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .link-logo {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 12px;
+            object-fit: contain;
+            filter: drop-shadow(0 4px 12px rgba(59, 130, 246, 0.2));
+        }
+
+        .link-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+            transition: left 0.6s;
+        }
+
+        .link-card:hover::before {
+            left: 100%;
+        }
+
+        .link-card:hover {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.12) 0%, rgba(6, 182, 212, 0.08) 100%);
+            border-color: rgba(59, 130, 246, 0.3);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(59, 130, 246, 0.15);
+        }
+
+        .link-icon {
+            font-size: 32px;
+            margin-bottom: 12px;
+            filter: drop-shadow(0 4px 12px rgba(59, 130, 246, 0.2));
+        }
+
+        .link-name {
+            font-size: 13px;
+            font-weight: 700;
+            color: #e0f2fe;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .link-url {
+            font-size: 11px;
+            color: #7dd3fc;
+            word-break: break-all;
+            opacity: 0.8;
+        }
+
+        /* Responsive para links */
+        @media (max-width: 640px) {
+            .links-container {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .link-card {
+                padding: 18px;
+            }
+
+            .link-icon {
+                font-size: 28px;
+            }
+
+            .link-name {
+                font-size: 12px;
+            }
+
+            .link-url {
+                font-size: 10px;
+            }
+        }
+
         /* Toast de confirmación */
         .toast {
             position: fixed;
@@ -456,7 +574,7 @@
                 <div class="wifi-item">
                     <span class="wifi-item-label">Nombre de la red (SSID)</span>
                     <div class="wifi-item-container">
-                        <div class="wifi-item-value" id="ssidValue" onclick="copyToClipboard('ssidValue', 'Red copiada')">TecnoSoluciones</div>
+                        <div class="wifi-item-value" id="ssidValue" onclick="copyToClipboard('ssidValue', 'Red copiada')">DIGIFIBRA-PLUS-5sD3</div>
                         <button class="copy-btn" onclick="copyToClipboard('ssidValue', 'Red copiada')">Copiar</button>
                     </div>
                 </div>
@@ -473,12 +591,28 @@
         <div class="instructions">
             <p class="instructions-title">✨ Cómo conectarse</p>
             <p class="instructions-text">
-                Ve a la configuración de WiFi en tu dispositivo, selecciona <strong>TecnoSoluciones</strong>, ingresa la contraseña y disfruta de la conexión. Haz clic en cualquier valor o en el botón para copiar rápidamente.
+                Ve a la configuración de WiFi en tu dispositivo, selecciona <strong>DIGIFIBRA-PLUS-5sD3</strong>, ingresa la contraseña y disfruta de la conexión. Haz clic en cualquier valor o en el botón para copiar rápidamente.
             </p>
         </div>
 
         <div class="footer">
             <p>Gracias por visitarnos <span>🎉</span></p>
+        </div>
+
+        <div class="links-section">
+            <p class="links-title">Descubre nuestros servicios</p>
+            <div class="links-container">
+                <a href="https://www.tecnosoluciones.info/" target="_blank" class="link-card">
+                    <img src="logotecno.png" alt="TecnoSoluciones" class="link-logo">
+                    <div class="link-name">TecnoSoluciones</div>
+                    <div class="link-url">tecnosoluciones.info</div>
+                </a>
+                <a href="https://bienestarybellezaaribel.info/" target="_blank" class="link-card">
+                    <img src="logo.png" alt="Bienestar y Belleza" class="link-logo">
+                    <div class="link-name">Bienestar y Belleza</div>
+                    <div class="link-url">bienestarybellezaaribel.info</div>
+                </a>
+            </div>
         </div>
     </div>
 
