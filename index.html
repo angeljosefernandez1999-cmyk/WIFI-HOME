@@ -14,12 +14,9 @@
             --panel-light: rgba(255, 255, 255, 0.055);
             --border: rgba(255, 255, 255, 0.1);
             --border-blue: rgba(96, 165, 250, 0.28);
-            --primary: #3b82f6;
-            --cyan: #22d3ee;
             --white: #f8fafc;
             --text: #cbd5e1;
             --muted: #8190a7;
-            --success: #34d399;
         }
 
         * {
@@ -200,53 +197,111 @@
             text-align: center;
         }
 
-        .home-icon-container {
-            width: 98px;
-            height: 98px;
-            margin: 0 auto 28px;
-            display: grid;
-            place-items: center;
+        /* Galería de fotografías familiares */
+        .family-gallery {
+            width: 290px;
+            height: 185px;
+            margin: 0 auto 38px;
             position: relative;
-            border: 1px solid rgba(96, 165, 250, 0.25);
-            border-radius: 29px;
-            background:
-                linear-gradient(
-                    145deg,
-                    rgba(59, 130, 246, 0.2),
-                    rgba(139, 92, 246, 0.08)
-                );
-            box-shadow:
-                0 22px 50px rgba(37, 99, 235, 0.2),
-                inset 0 1px 0 rgba(255, 255, 255, 0.12);
-            transform: rotate(-4deg);
         }
 
-        .home-icon-container::after {
+        .family-gallery::before {
             content: "";
+            width: 200px;
+            height: 120px;
             position: absolute;
-            inset: 8px;
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 22px;
+            top: 30px;
+            left: 45px;
+            z-index: 0;
+            border-radius: 50%;
+            background: rgba(59, 130, 246, 0.35);
+            filter: blur(48px);
+            pointer-events: none;
         }
 
-        .home-icon {
-            display: inline-block;
-            position: relative;
+        .family-photo {
+            width: 165px;
+            height: 165px;
+            padding: 5px;
+            position: absolute;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 30px;
+            background: linear-gradient(
+                145deg,
+                rgba(255, 255, 255, 0.16),
+                rgba(255, 255, 255, 0.04)
+            );
+            box-shadow:
+                0 25px 55px rgba(0, 0, 0, 0.48),
+                0 0 35px rgba(59, 130, 246, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            transition:
+                transform 0.35s ease,
+                box-shadow 0.35s ease;
+        }
+
+        .family-photo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            border-radius: 25px;
+            object-fit: cover;
+        }
+
+        .family-photo-left {
+            top: 12px;
+            left: 5px;
             z-index: 1;
-            font-size: 48px;
-            transform: rotate(4deg);
-            filter: drop-shadow(0 8px 20px rgba(59, 130, 246, 0.35));
-            animation: floatingHome 3.5s ease-in-out infinite;
+            transform: rotate(-7deg);
+            animation: familyFloatLeft 4.5s ease-in-out infinite;
         }
 
-        @keyframes floatingHome {
+        .family-photo-right {
+            top: 5px;
+            right: 5px;
+            z-index: 2;
+            transform: rotate(7deg);
+            animation: familyFloatRight 4.5s ease-in-out infinite;
+        }
+
+        .family-photo-left:hover {
+            z-index: 4;
+            transform: translateY(-8px) rotate(-2deg) scale(1.06);
+            box-shadow:
+                0 32px 65px rgba(0, 0, 0, 0.55),
+                0 0 40px rgba(59, 130, 246, 0.28);
+        }
+
+        .family-photo-right:hover {
+            z-index: 4;
+            transform: translateY(-8px) rotate(2deg) scale(1.06);
+            box-shadow:
+                0 32px 65px rgba(0, 0, 0, 0.55),
+                0 0 40px rgba(139, 92, 246, 0.28);
+        }
+
+        @keyframes familyFloatLeft {
             0%,
             100% {
-                transform: rotate(4deg) translateY(0);
+                transform: translateY(0) rotate(-7deg);
             }
 
             50% {
-                transform: rotate(4deg) translateY(-7px);
+                transform: translateY(-7px) rotate(-5deg);
+            }
+        }
+
+        @keyframes familyFloatRight {
+            0%,
+            100% {
+                transform: translateY(0) rotate(7deg);
+            }
+
+            50% {
+                transform: translateY(-5px) rotate(5deg);
             }
         }
 
@@ -416,7 +471,7 @@
             letter-spacing: 0.7px;
         }
 
-        /* Impide seleccionar manualmente el nombre del WiFi */
+        /* No permite seleccionar el nombre del WiFi */
         .ssid-value {
             cursor: default;
             user-select: none;
@@ -779,7 +834,7 @@
             transform: translateY(0);
         }
 
-        /* Adaptación para móviles */
+        /* Diseño responsive */
         @media (max-width: 720px) {
             body {
                 padding: 14px;
@@ -794,14 +849,35 @@
                 padding: 45px 22px 35px;
             }
 
-            .home-icon-container {
-                width: 85px;
-                height: 85px;
+            .family-gallery {
+                width: 235px;
+                height: 158px;
+                margin-bottom: 31px;
+            }
+
+            .family-gallery::before {
+                width: 160px;
+                height: 100px;
+                top: 25px;
+                left: 37px;
+            }
+
+            .family-photo {
+                width: 138px;
+                height: 138px;
                 border-radius: 25px;
             }
 
-            .home-icon {
-                font-size: 42px;
+            .family-photo img {
+                border-radius: 20px;
+            }
+
+            .family-photo-left {
+                left: 2px;
+            }
+
+            .family-photo-right {
+                right: 2px;
             }
 
             h1 {
@@ -864,6 +940,16 @@
                 padding-left: 16px;
             }
 
+            .family-gallery {
+                width: 210px;
+                height: 145px;
+            }
+
+            .family-photo {
+                width: 125px;
+                height: 125px;
+            }
+
             .wifi-card,
             .rules-card {
                 padding-right: 16px;
@@ -888,7 +974,7 @@
 </head>
 
 <body>
-    <!-- Fondo moderno -->
+    <!-- Fondo -->
     <div class="background-grid" aria-hidden="true"></div>
     <div class="glow glow-one" aria-hidden="true"></div>
     <div class="glow glow-two" aria-hidden="true"></div>
@@ -897,8 +983,21 @@
         <div class="content">
             <!-- Presentación -->
             <header class="header">
-                <div class="home-icon-container">
-                    <span class="home-icon" aria-hidden="true">🏠</span>
+                <!-- Fotografías familiares -->
+                <div class="family-gallery">
+                    <div class="family-photo family-photo-left">
+                        <img
+                            src="familia0.png"
+                            alt="Fotografía de nuestra familia"
+                        >
+                    </div>
+
+                    <div class="family-photo family-photo-right">
+                        <img
+                            src="familia.png"
+                            alt="Fotografía de nuestra familia"
+                        >
+                    </div>
                 </div>
 
                 <p class="eyebrow">Te damos la bienvenida</p>
@@ -925,7 +1024,7 @@
                 </div>
 
                 <div class="wifi-fields">
-                    <!-- El nombre de red no se puede copiar -->
+                    <!-- Nombre del WiFi sin función de copia -->
                     <div class="wifi-field">
                         <span class="field-label">Nombre de red</span>
 
@@ -940,6 +1039,7 @@
                         </div>
                     </div>
 
+                    <!-- Contraseña -->
                     <div class="wifi-field">
                         <span class="field-label">Contraseña</span>
 
@@ -1145,7 +1245,7 @@
         </footer>
     </main>
 
-    <!-- Notificación -->
+    <!-- Notificación de contraseña copiada -->
     <div
         class="toast"
         id="toast"
@@ -1233,8 +1333,8 @@
         }
 
         /*
-         * Impide abrir el menú contextual o copiar manualmente
-         * el nombre de la red.
+         * Impide copiar o seleccionar manualmente
+         * el nombre de la red WiFi.
          */
         const ssidElement = document.getElementById("ssidValue");
 
